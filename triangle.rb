@@ -15,7 +15,7 @@
 #
 def triangle(*sides)
   raise TriangleError, "Sides must be greater than zero" if sides.min <= 0
-  raise TriangleError, "Two sides must be greater than third" if sides.sort.shift(2).inject(:+) <= sides.max
+  raise TriangleError, "Not a triangle" if (sides.sort.shift(2).inject(:+) <= sides.max
   case sides.uniq.count
   when 1 then :equilateral
   when 2 then :isosceles
