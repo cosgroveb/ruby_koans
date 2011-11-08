@@ -15,6 +15,9 @@
 #
 def triangle(a, b, c)
   unique_sides = [a,b,c].uniq.count
+  if ([a,b,c].min <= 0) || ([a,b,c].sort.shift(2).inject(:+) <= [a,b,c].max)
+    raise TriangleError.new
+  end
   if unique_sides == 1
     :equilateral
   elsif unique_sides == 2
