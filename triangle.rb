@@ -13,17 +13,14 @@
 # and
 #   about_triangle_project_2.rb
 #
-def triangle(a, b, c)
-  unique_sides = [a,b,c].uniq.count
-  if ([a,b,c].min <= 0) || ([a,b,c].sort.shift(2).inject(:+) <= [a,b,c].max)
+def triangle(*sides)
+  if (sides.min <= 0) || (sides.sort.shift(2).inject(:+) <= sides.max)
     raise TriangleError.new
   end
-  if unique_sides == 1
-    :equilateral
-  elsif unique_sides == 2
-    :isosceles
-  else
-    :scalene
+  case sides.uniq.count
+  when 1 then :equilateral
+  when 2 then :isosceles
+  else :scalene
   end
 end
 
