@@ -34,14 +34,18 @@ def score(dice)
 
   ones = dice.find_all{|item| item == 1}.count
   dice.delete(1)
-  score += 1000 if ones >= 3
-  ones -= 3 if ones >= 3
+  if ones >= 3
+    score += 1000
+    ones -= 3
+  end
   score += ones * 100
 
   fives = dice.find_all{|item| item == 5}.count
   dice.delete(5)
-  score += 500 if fives >= 3
-  fives -= 3 if fives >= 3
+  if fives >= 3
+    score += 500
+    fives -= 3
+  end
   score += fives * 50
 
   remaining = dice.uniq
